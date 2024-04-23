@@ -19,16 +19,17 @@ const result = ref('')
 async function checkLocal () {
   const options = {
     method: 'GET',
-    url: 'http://line1a.local',
     url: 'https://line1a.local',
     headers: { Accept: 'application/json' },
   }
   try {
-    const { data } = await axios.request(options)
+    const data = await axios.request(options)
+    result.value = data
     console.log(data)
   }
   catch (error) {
     console.log(error)
+    result.value = error
   }
 }
 </script>
