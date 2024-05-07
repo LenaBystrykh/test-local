@@ -18,7 +18,7 @@ const result = ref('')
 
 async function checkLocal () {
   const options = {
-    url: 'https://line1a.local',
+    url: 'http://www.peterpet.ru/kot-pjot-iz-pod-krana',
     headers: { Accept: 'application/json' },
   }
   try {
