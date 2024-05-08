@@ -10,6 +10,7 @@
 
 <script setup>
 import { CapacitorHttp } from '@capacitor/core';
+import { Buffer } from 'buffer'
 import { ref, onMounted, onBeforeUnmount } from 'vue'
 import BaseScanner from '../components/BaseScanner.vue'
 import {
@@ -59,9 +60,7 @@ const startScan = async () => {
   await BarcodeScanner.addListener(
     'barcodeScanned',
     async result => {
-      console.log(result)
-      result.value = result
-      await updateResult(result.barcode)
+      await updateResult(result.barcode.displayValue)
       stopScan()
     }
   )
@@ -69,12 +68,8 @@ const startScan = async () => {
 }
 
 async function updateResult (val) {
-  console.log(val.bytes)
-  console.log(val.displayValue)
-  console.log(val.rawValue)
-  console.log(val.bytes.toString())
-  console.log(val.displayValue.toString())
-  console.log(val.rawValue.toString())
+  const buf = Buffer.from(val, 'utf8')
+  result.value = buf.toString()
 }
 
 const stopScan = async () => {
