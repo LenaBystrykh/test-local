@@ -3,7 +3,7 @@
     <p @click="checkLocal">Чтобы начать работу, отсканируйте личный код пользователя</p>
     <p>{{ result }}</p>
     <div class="start-scanner-wrapper">
-      <BaseScanner :height="'calc(100% - 32px)'" :width="'auto'" :code-type="codeTypes.DATAMATRIX"></BaseScanner>
+      <BaseScanner :height="'calc(100% - 32px)'" :width="'auto'" :code-type="'DataMatrix'"></BaseScanner>
     </div>
   </div>
 </template>
@@ -12,7 +12,6 @@
 import { CapacitorHttp } from '@capacitor/core';
 import { ref, onMounted, onBeforeUnmount } from 'vue'
 import BaseScanner from '../components/BaseScanner.vue'
-import * as codeTypes from '../constants/codeTypes.js'
 import {
   BarcodeScanner,
   BarcodeFormat
@@ -118,7 +117,7 @@ body.barcode-scanner-active {
   padding: 48px;
   display: flex;
   flex-direction: column;
-  background-color: $background;
+  background-color: #f4f4f4;
 
   p {
     line-height: 48px;
@@ -147,7 +146,7 @@ body.barcode-scanner-active {
     &__camera-preview {
       height: 100%;
       border-radius: 12px;
-      box-shadow: 0 0 0 100vmax $gray;
+      box-shadow: 0 0 0 100vmax #ededed;
     }
 
     &__border {
