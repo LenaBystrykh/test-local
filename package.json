@@ -11,8 +11,9 @@
     "build": "quasar build"
   },
   "dependencies": {
-    "@capacitor/cli": "^6.0.0",
-    "@capacitor/core": "^6.0.0",
+    "@capacitor-mlkit/barcode-scanning": "^5.4.0",
+    "@capacitor/cli": "^5.7.3",
+    "@capacitor/core": "^5.7.3",
     "@quasar/extras": "^1.16.4",
     "axios": "^1.6.8",
     "quasar": "^2.8.0",

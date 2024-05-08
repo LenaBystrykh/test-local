@@ -5,6 +5,7 @@
   "author": "LenaBystrykh <lena.bystryh@mail.ru>",
   "private": true,
   "dependencies": {
+    "@capacitor-mlkit/barcode-scanning": "^5.4.0",
     "@capacitor/android": "^5.7.5",
     "@capacitor/app": "^5.0.0",
     "@capacitor/cli": "^5.0.0",
