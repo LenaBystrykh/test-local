@@ -123,7 +123,7 @@ body.barcode-scanner-active {
     line-height: 48px;
     font-size: 16px;
     margin-bottom: 24px;
-    color: $text;
+    color: #000000;
     visibility: visible;
     z-index: 10010;
     text-align: center;
