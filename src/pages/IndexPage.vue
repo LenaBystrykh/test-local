@@ -14,7 +14,7 @@
 // import { Token } from '../gen/token_connect'
 // import protobuf from 'protobufjs'
 import { ref, onMounted, onBeforeUnmount } from 'vue'
-import { Token } from '../gen/product_pb'
+import { Product } from '../gen/product_pb'
 import BaseScanner from '../components/BaseScanner.vue'
 import {
   BarcodeScanner,
@@ -83,8 +83,9 @@ async function updateResult (val) {
   // const asciiData = String.fromCharCode.apply(null, binData)
   console.log(val)
   const decodeBinData = Uint8Array.from(val, c => c.charCodeAt(0))
-  const decodeProduct = Token.fromBinary(decodeBinData)
+  const decodeProduct = Product.fromBinary(decodeBinData)
   console.log(`Decode product: ${JSON.stringify(decodeProduct)}`)
+  console.log(JSON.parse(JSON.stringify(decodeProduct)))
 }
 
 const stopScan = async () => {
