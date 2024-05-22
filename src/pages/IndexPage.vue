@@ -76,7 +76,7 @@ const startScan = async () => {
   await BarcodeScanner.startScan(scanOptions)
 }
 async function updateResult (val) {
-  const root = await protobuf.load('src/assets/product.proto')
+  const root = await protobuf.load('product.proto')
   const Product = root.lookupType('Auth')
   const product = Product.create(val)
 

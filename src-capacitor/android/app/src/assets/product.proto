@@ -1,4 +1,0 @@
-message Auth {
-  required string token = 1;
-  required string secret = 2;
-}
