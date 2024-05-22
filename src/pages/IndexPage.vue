@@ -77,12 +77,12 @@ const startScan = async () => {
   await BarcodeScanner.startScan(scanOptions)
 }
 async function updateResult (val) {
-  const product = new Token(val)
+  // const product = new Token(val)
 
-  const binData = product.toBinary()
-  const asciiData = String.fromCharCode.apply(null, binData)
-  console.log(asciiData)
-  const decodeBinData = Uint8Array.from(asciiData, c => c.charCodeAt(0))
+  // const binData = product.toBinary()
+  // const asciiData = String.fromCharCode.apply(null, binData)
+  console.log(val)
+  const decodeBinData = Uint8Array.from(val, c => c.charCodeAt(0))
   const decodeProduct = Token.fromBinary(decodeBinData)
   console.log(`Decode product: ${JSON.stringify(decodeProduct)}`)
 }
