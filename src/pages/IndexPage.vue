@@ -9,11 +9,12 @@
 </template>
 
 <script setup>
-import { createPromiseClient } from '@connectrpc/connect'
-import { createConnectTransport } from '@connectrpc/connect-web'
-import { Token } from '../gen/token_connect'
-import protobuf from 'protobufjs'
+// import { createPromiseClient } from '@connectrpc/connect'
+// import { createConnectTransport } from '@connectrpc/connect-web'
+// import { Token } from '../gen/token_connect'
+// import protobuf from 'protobufjs'
 import { ref, onMounted, onBeforeUnmount } from 'vue'
+import { Token } from '../gen/product_pb'
 import BaseScanner from '../components/BaseScanner.vue'
 import {
   BarcodeScanner,
@@ -36,28 +37,29 @@ const isSupported = async () => {
   return false
 }
 
-async function sha256 (message) {
-  const msgBuffer = new TextEncoder().encode(message)
-  const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer)
-  const hashArray = Array.from(new Uint8Array(hashBuffer))
-  const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('')
+// async function sha256 (message) {
+//   const msgBuffer = new TextEncoder().encode(message)
+//   const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer)
+//   const hashArray = Array.from(new Uint8Array(hashBuffer))
+//   const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('')
 
-  return hashHex
-}
+//   return hashHex
+// }
 
 async function checkLocal () {
-  const transport = createConnectTransport({
-    baseUrl: import.meta.env.VITE_URL
-  })
-  const client = createPromiseClient(Token, transport)
-  const signParams = import.meta.env.VITE_UUID + ':' + import.meta.env.VITE_SECRET
-  const signEncrypted = await sha256(signParams)
-  const response = await client.list({
-    token: import.meta.env.VITE_UUID,
-    sign: signEncrypted
-  })
-  console.log('response:')
-  console.log(response)
+  console.log('check local')
+  // const transport = createConnectTransport({
+  //   baseUrl: import.meta.env.VITE_URL
+  // })
+  // const client = createPromiseClient(Token, transport)
+  // const signParams = import.meta.env.VITE_UUID + ':' + import.meta.env.VITE_SECRET
+  // const signEncrypted = await sha256(signParams)
+  // const response = await client.list({
+  //   token: import.meta.env.VITE_UUID,
+  //   sign: signEncrypted
+  // })
+  // console.log('response:')
+  // console.log(response)
 }
 
 const startScan = async () => {
@@ -75,15 +77,13 @@ const startScan = async () => {
   await BarcodeScanner.startScan(scanOptions)
 }
 async function updateResult (val) {
-  const root = await protobuf.load('product.proto')
-  const Product = root.lookupType('Auth')
-  const product = Product.create(val)
+  const product = new Token(val)
 
-  const binData = Product.encode(product).finish()
+  const binData = product.toBinary()
   const asciiData = String.fromCharCode.apply(null, binData)
-
+  console.log(asciiData)
   const decodeBinData = Uint8Array.from(asciiData, c => c.charCodeAt(0))
-  const decodeProduct = Product.decode(decodeBinData)
+  const decodeProduct = Token.fromBinary(decodeBinData)
   console.log(`Decode product: ${JSON.stringify(decodeProduct)}`)
 }
 
