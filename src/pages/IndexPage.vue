@@ -12,7 +12,6 @@
 import { createPromiseClient } from '@connectrpc/connect'
 import { createConnectTransport } from '@connectrpc/connect-web'
 import { Token } from '../gen/token_connect'
-
 import protobuf from 'protobufjs'
 import { ref, onMounted, onBeforeUnmount } from 'vue'
 import BaseScanner from '../components/BaseScanner.vue'
