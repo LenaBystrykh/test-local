@@ -23,14 +23,14 @@ const result = ref('')
 
 function checkLocal () {
   try {
-    fetch('https://suijfufqwpajfc.com')
+    fetch('https://smthmobbbbile.com')
   } catch (error) {
     console.log(error)
   }
 }
 
 function sendHi () {
-  throw new Error('Hi')
+  throw new Error('Hi from mobile')
 }
 </script>
 
