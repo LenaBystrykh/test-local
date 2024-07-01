@@ -18,7 +18,7 @@
     "@connectrpc/connect-web": "^1.4.0",
     "@quasar/extras": "^1.16.4",
     "@sentry/capacitor": "^0.18.0",
-    "@sentry/vue": "^7.114.0",
+    "@sentry/vue": "7.114.0",
     "axios": "^1.6.8",
     "buffer": "^6.0.3",
     "quasar": "^2.8.0",
